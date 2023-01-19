@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'fonts';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply mb-2;
+}
+
+h1 {
+    @apply text-4xl;
+    @apply md:text-5xl;
+    @apply font-extrabold;
+    @apply leading-heading;
+}
+
+h2 {
+    @apply text-3xl;
+    @apply md:text-4xl;
+    @apply leading-heading;
+    @apply font-bold;
+}
+
+h3 {
+    @apply text-2xl;
+    @apply md:text-3xl;
+    @apply leading-heading;
+    @apply font-normal;
+}
+
+h4 {
+    @apply text-xl;
+    @apply md:text-2xl;
+    @apply leading-heading;
+    @apply font-normal;
+}
+
+p {
+    @apply mb-4;
+}
+
+.linelimit3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+ul.orangelist {
+    list-style: none;
+  }
+  
+  ul.orangelist{
+    padding-left: 2rem;
+    li{
+    display: flex;
+    align-items: center;
+    
+    &::before {
+        content: "\2022";
+        @apply text-orange;
+        display: inline-block;
+        width: 1rem;
+        font-size: 30px;
+        margin-left: -1em;
+        line-height: .1;
+    }
+}}
