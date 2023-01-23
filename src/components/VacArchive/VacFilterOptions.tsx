@@ -1,10 +1,10 @@
 const VacFilterOptions = ({ options, title, name, state }: any) => {
     return (
-        <div className="mb-12">
-            <h3 className="font-regular">{title}</h3>
+        <div className="mb-8 checkboxwrapper">
+            <h3 className="font-regular mb-6">{title}</h3>
             {options.map((option: any, index: number) => {
                 return (
-                    <div key={index}>
+                    <div key={index} className="checkboxitem">
                         <input
                             type="checkbox"
                             id={option}
@@ -22,6 +22,7 @@ const VacFilterOptions = ({ options, title, name, state }: any) => {
                                             ...state.filterState[name],
                                             e.target.value,
                                         ],
+                                        page: null,
                                     })
                                 } else {
                                     state.setFilterState({
@@ -30,13 +31,12 @@ const VacFilterOptions = ({ options, title, name, state }: any) => {
                                             (item: any) =>
                                                 item !== e.target.value,
                                         ),
+                                        page: null,
                                     })
                                 }
                             }}
                         />
-                        <label htmlFor={option} className="ml-2">
-                            {option}
-                        </label>
+                        <label htmlFor={option}>{option}</label>
                     </div>
                 )
             })}

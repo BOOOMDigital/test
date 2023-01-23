@@ -45,7 +45,7 @@ const GeoSelect = ({ handleSearch }: any) => {
     return (
         <>
             {isLoaded && (
-                <div className="max-w-[284px]">
+                <div className="max-w-[284px] mb-10">
                     <div className="grid grid-cols-2  rounded-xl shadow-input-shadow mb-6">
                         <Autocomplete className="w-[200%]">
                             <input
@@ -67,14 +67,25 @@ const GeoSelect = ({ handleSearch }: any) => {
                             <option value="100">100 km</option>
                         </select>
                     </div>
-                    <ArrowButton
-                        noLink
-                        onClick={() =>
-                            getCoords(autocompleteRef.current.value || '')
-                        }
-                        className="bg-grey rounded-md gap-6 mb-6">
-                        Zoeken
-                    </ArrowButton>
+                    <div className="flex items-center gap-4 mb-6">
+                        <ArrowButton
+                            noLink
+                            onClick={() =>
+                                getCoords(autocompleteRef.current.value || '')
+                            }
+                            className="bg-grey rounded-md gap-6">
+                            Zoeken
+                        </ArrowButton>
+                        <p
+                            onClick={() => {
+                                autocompleteRef.current.value = ''
+                                radiusRef.current.value = '10'
+                                handleSearch(null)
+                            }}
+                            className="m-0 opacity-[.4] text-xs hover:cursor-pointer">
+                            Wissen
+                        </p>
+                    </div>
                 </div>
             )}
         </>

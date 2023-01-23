@@ -11,15 +11,13 @@ import VacFilterOptions from './VacFilterOptions'
 //     setFilteredVacatures: (vacatures: any) => void
 // }
 
-const VacSidebar = ({ vacatures, setFilteredVacatures }: any) => {
+const VacSidebar = ({
+    vacatures,
+    setFilteredVacatures,
+    filterState,
+    setFilterState,
+}: any) => {
     const [isLoaded, setIsLoaded] = useState(false)
-    const [filterState, setFilterState] = useState({
-        target_audience: [],
-        vac_sector: [],
-        tags: [],
-        sector_ids: [],
-        coords: null,
-    })
 
     // Get sectors from page
     const page = usepage()
@@ -51,6 +49,8 @@ const VacSidebar = ({ vacatures, setFilteredVacatures }: any) => {
             })
             .catch((err) => {
                 console.error('failed to fetch', err)
+                // set cursor to default
+                document.body.style.cursor = 'default'
             })
     }, [filterState])
 
@@ -58,6 +58,7 @@ const VacSidebar = ({ vacatures, setFilteredVacatures }: any) => {
         setFilterState({
             ...filterState,
             coords: coords || null,
+            page: null,
         })
     }
 

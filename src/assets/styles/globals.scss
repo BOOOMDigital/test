@@ -72,3 +72,33 @@ ul.orangelist {
         line-height: .1;
     }
 }}
+
+.checkboxwrapper {
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="checkbox"] + label {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: .5rem;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            margin-right: .75rem;
+            vertical-align: middle;
+            @apply border;
+            @apply border-[#20303E];
+        }
+    }
+
+    input[type="checkbox"]:checked + label {
+        &::before {
+            content: "";
+            @apply bg-[#20303E];
+        }
+    }
+}

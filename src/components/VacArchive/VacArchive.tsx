@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import VacItem, { VacatureProps } from './VacItem'
+import VacPagintion from './VacPagintion'
 import VacSidebar from './VacSidebar'
 
 export type VacArchiveProps = {
@@ -26,13 +27,25 @@ export type VacArchiveProps = {
 const VacArchive = ({ vacatures }: VacArchiveProps) => {
     const initialVacatureData = vacatures || []
     const [filteredVacatures, setFilteredVacatures] = useState(vacatures || [])
+    const [filterState, setFilterState] = useState({
+        target_audience: [],
+        vac_sector: [],
+        tags: [],
+        sector_ids: [],
+        coords: null,
+        page: null,
+    })
+
+    console.log('filteredVacatures', filteredVacatures)
 
     return (
-        <section className="py-16">
+        <section id="vacarchive" className="py-16">
             <div className="container flex gap-4">
                 <VacSidebar
                     setFilteredVacatures={setFilteredVacatures}
                     vacatures={initialVacatureData}
+                    filterState={filterState}
+                    setFilterState={setFilterState}
                 />
                 <div className="flex-1">
                     <h2 className="text-orange mb-12">
@@ -41,6 +54,11 @@ const VacArchive = ({ vacatures }: VacArchiveProps) => {
                     {filteredVacatures?.items?.data?.map((vacature, index) => (
                         <VacItem key={index} {...vacature} />
                     ))}
+                    <VacPagintion
+                        filteredVacatures={filteredVacatures}
+                        filterState={filterState}
+                        setFilterState={setFilterState}
+                    />
                 </div>
             </div>
         </section>
